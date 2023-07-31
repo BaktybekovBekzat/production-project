@@ -6,9 +6,7 @@ import { AppRouter } from './providers/Router'
 import { Navbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
 
-interface IProps {}
-
-export const App: FC<IProps> = (props) => {
+export const App: FC = () => {
 	const { theme } = useTheme()
 
 	return (

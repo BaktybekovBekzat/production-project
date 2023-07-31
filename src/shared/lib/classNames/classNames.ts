@@ -9,9 +9,9 @@ export function classNames(
 		cls,
 		...additional.filter(Boolean),
 		...Object.entries(mods)
-			.filter(([cls, value]) => {
-				return Boolean(value)
+			.filter((item) => {
+				return Boolean(item[1])
 			})
-			.map(([cls, value]) => cls),
+			.map((item) => item[0]),
 	].join(' ')
 }
