@@ -1,4 +1,4 @@
-import { ProgressPlugin, WebpackPluginInstance } from 'webpack'
+import { DefinePlugin, ProgressPlugin, WebpackPluginInstance } from 'webpack'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { IBuildOptions } from './types'
@@ -12,6 +12,9 @@ export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].[contenthash:8].css',
 			chunkFilename: 'css/[name].[contenthash:8].css',
+		}),
+		new DefinePlugin({
+			__IS_DEV__: options.isDev,
 		}),
 	]
 }
