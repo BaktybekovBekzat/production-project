@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './Sidebar.module.scss'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { LangSwitcher } from 'widgets/LangSwitcher'
+import { Button } from 'shared/ui/Button/Button'
 
 interface IProps {
 	className?: string
@@ -23,8 +24,11 @@ export const Sidebar: FC<IProps> = (props) => {
 				},
 				[className]
 			)}
+			data-testid='sidebar'
 		>
-			<button onClick={onToggle}>Toggle</button>
+			<Button onClick={onToggle} data-testid='sidebar-toggle'>
+				Toggle
+			</Button>
 			<div className={styles.switchers}>
 				<ThemeSwitcher />
 				<LangSwitcher />
