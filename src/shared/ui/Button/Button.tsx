@@ -10,15 +10,11 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export enum ButtonTheme {
 	CLEAR = 'clear',
+    OUTLINE = 'outline'
 }
 
 export const Button: FC<IProps> = (props) => {
-	const {
-		className = '',
-		children,
-		theme = ButtonTheme.CLEAR,
-		...otherProps
-	} = props
+	const { className = '', children, theme, ...otherProps } = props
 
 	return (
 		<button
