@@ -14,7 +14,7 @@
     "unit": "jest --config ./config/jest/jest.config.ts",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "build-storybook": "storybook build -c ./config/storybook",
-    "chromatic": "npx chromatic --project-token=chpt_131559d72d2e634 --exit-zero-on-changes"
+    "chromatic": "chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "keywords": [],
   "author": "",

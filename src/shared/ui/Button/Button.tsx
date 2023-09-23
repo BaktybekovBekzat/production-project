@@ -6,21 +6,43 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string
 	children: ReactNode
 	theme?: ButtonTheme
+	square?: boolean
+	size?: ButtonSize
+}
+
+export enum ButtonSize {
+	L = 'size_l',
+	M = 'size_m',
+	XL = 'size_xl',
 }
 
 export enum ButtonTheme {
 	CLEAR = 'clear',
-    OUTLINE = 'outline'
+	OUTLINE = 'outline',
+	BACKGROUND = 'background',
+	BACKGROUND_INVERTED = 'backgroundInverted',
 }
 
 export const Button: FC<IProps> = (props) => {
-	const { className = '', children, theme, ...otherProps } = props
+	const {
+		className = '',
+		children,
+		theme,
+		square = false,
+		size = ButtonSize.M,
+		...otherProps
+	} = props
+
+	const mods: Record<string, string | boolean> = {
+		[styles.square]: square,
+	}
 
 	return (
 		<button
-			className={classNames(styles.Button, {}, [
+			className={classNames(styles.Button, mods, [
 				className,
 				styles[theme],
+				styles[size],
 			])}
 			{...otherProps}
 		>

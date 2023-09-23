@@ -1,30 +1,14 @@
-name: Chromatic Visual Testing
-
-on:
-    pull_request:
-        branches:
-            - main
-
+name: 'Chromatic'
+on: pull_request
 jobs:
-    chromatic:
+    chromatic-deployment:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [17.x]
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-              with:
-                  fetch-depth: 0
-
-            - name: Set up Node.js
-              uses: actions/setup-node@v2
-              with:
-                  node-version: ${{ matrix.node-version }}
-
+            - uses: actions/checkout@v1
             - name: Install dependencies
               run: npm install
 
-            - name: Run Chromatic
-              run: npx chromatic --projectToken ${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes
+            - name: Publish to Chromatic
+              uses: chromaui/action@v1
+              with:
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
