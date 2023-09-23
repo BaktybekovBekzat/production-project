@@ -5,7 +5,7 @@ import { IBuildOptions } from './types'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
-	return [
+	const plugins = [
 		new ProgressPlugin(),
 		new HTMLWebpackPlugin({
 			template: options.paths.html,
@@ -17,8 +17,15 @@ export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 		new DefinePlugin({
 			__IS_DEV__: options.isDev,
 		}),
-		new BundleAnalyzerPlugin({
-			openAnalyzer: false,
-		}),
 	]
+
+	if (options.isDev) {
+		plugins.push(
+			new BundleAnalyzerPlugin({
+				openAnalyzer: false,
+			})
+		)
+	}
+
+	return plugins
 }
