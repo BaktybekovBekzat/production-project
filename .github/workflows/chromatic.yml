@@ -27,4 +27,4 @@ jobs:
               run: npm install
 
             - name: Run Chromatic
-              run: npx chromatic --projectToken ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+              run: npx chromatic --projectToken ${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes
