@@ -26,6 +26,8 @@ export const ThemeProvider: FC<IProps> = (props) => {
 		[theme]
 	)
 
+	document.body.className = theme
+
 	return (
 		<ThemeContext.Provider value={defaultProps}>
 			{props.children}

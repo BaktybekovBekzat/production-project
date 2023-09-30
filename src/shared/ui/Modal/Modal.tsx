@@ -18,7 +18,7 @@ interface IProps {
 	onClose?: () => void
 }
 
-const ANIMATION_DELAY = 300
+const ANIMATION_DELAY = 100
 
 export const Modal: FC<IProps> = (props) => {
 	const { className = '', children, isOpen, onClose } = props
@@ -30,25 +30,22 @@ export const Modal: FC<IProps> = (props) => {
 		[styles.isClosing]: isClosing,
 	}
 
-	const closeHandler = useCallback(
-		() => () => {
-			if (onClose) {
-				setIsClosing(true)
-				timerRef.current = setTimeout(() => {
-					onClose()
-					setIsClosing(false)
-				}, ANIMATION_DELAY)
-			}
-		},
-		[onClose]
-	)
+	const closeHandler = useCallback(() => {
+		if (onClose) {
+			setIsClosing(true)
+			timerRef.current = setTimeout(() => {
+				onClose()
+				setIsClosing(false)
+			}, ANIMATION_DELAY)
+		}
+	}, [onClose])
 
 	const onContentClick = (e: MouseEvent) => {
 		e.stopPropagation()
 	}
 
 	const onKeyDown = useCallback(
-		() => (e: KeyboardEvent) => {
+		(e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
 				closeHandler()
 			}
@@ -58,11 +55,11 @@ export const Modal: FC<IProps> = (props) => {
 
 	useEffect(() => {
 		if (isOpen) {
-			window.addEventListener('keyDown', onKeyDown)
+			window.addEventListener('keydown', onKeyDown)
 		}
 
 		return () => {
-			window.removeEventListener('keyDown', onKeyDown)
+			window.removeEventListener('keydown', onKeyDown)
 			clearTimeout(timerRef.current)
 		}
 	}, [isOpen, onKeyDown])

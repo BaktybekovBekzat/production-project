@@ -1,6 +1,6 @@
 import path from 'path'
 import { IBuildPaths } from '../build/types/index'
-import { Configuration, RuleSetRule } from 'webpack'
+import { Configuration, DefinePlugin, RuleSetRule } from 'webpack'
 
 export default ({ config }: { config: Configuration }) => {
 	const paths: IBuildPaths = {
@@ -56,6 +56,12 @@ export default ({ config }: { config: Configuration }) => {
 
 	config.module?.rules?.push(svgLoader)
 	config.module?.rules?.push(cssLoader)
+
+	config?.plugins?.push(
+		new DefinePlugin({
+			__IS_DEV__: true,
+		})
+	)
 
 	return config
 }
