@@ -16,12 +16,14 @@ interface IProps {
 	children?: ReactNode
 	isOpen?: boolean
 	onClose?: () => void
+	lazy?: boolean
 }
 
 const ANIMATION_DELAY = 100
 
 export const Modal: FC<IProps> = (props) => {
-	const { className = '', children, isOpen, onClose } = props
+	const { className = '', children, isOpen, onClose, lazy } = props
+	const [isMounted, setIsMounted] = useState(false)
 	const [isClosing, setIsClosing] = useState(false)
 	const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
@@ -63,6 +65,14 @@ export const Modal: FC<IProps> = (props) => {
 			clearTimeout(timerRef.current)
 		}
 	}, [isOpen, onKeyDown])
+
+	useEffect(() => {
+		if (isOpen) {
+			setIsMounted(true)
+		}
+	}, [isOpen])
+
+	if (lazy && !isMounted) return null
 
 	return (
 		<Portal>
