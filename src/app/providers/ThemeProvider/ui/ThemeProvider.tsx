@@ -10,10 +10,13 @@ const defaultTheme =
 
 interface IProps {
 	children: ReactNode
+	initialTheme?: Theme
 }
 
 export const ThemeProvider: FC<IProps> = (props) => {
-	const [theme, setTheme] = useState<Theme>(defaultTheme)
+	const [theme, setTheme] = useState<Theme>(
+		props.initialTheme ? props.initialTheme : defaultTheme
+	)
 
 	const defaultProps = useMemo(
 		() => ({
