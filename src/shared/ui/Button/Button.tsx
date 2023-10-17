@@ -8,6 +8,7 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	theme?: ButtonTheme
 	square?: boolean
 	size?: ButtonSize
+	disabled?: boolean
 }
 
 export enum ButtonSize {
@@ -18,7 +19,7 @@ export enum ButtonSize {
 
 export enum ButtonTheme {
 	CLEAR = 'clear',
-    CLEAR_INVERTED = 'clearInverted',
+	CLEAR_INVERTED = 'clearInverted',
 	OUTLINE = 'outline',
 	BACKGROUND = 'background',
 	BACKGROUND_INVERTED = 'backgroundInverted',
@@ -31,11 +32,13 @@ export const Button: FC<IProps> = (props) => {
 		theme,
 		square = false,
 		size = ButtonSize.M,
+		disabled,
 		...otherProps
 	} = props
 
 	const mods: Record<string, string | boolean> = {
 		[styles.square]: square,
+		[styles.disabled]: disabled,
 	}
 
 	return (

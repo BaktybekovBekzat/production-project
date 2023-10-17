@@ -4,7 +4,6 @@ import {
 	memo,
 	useEffect,
 	useRef,
-	useState,
 } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './Input.module.scss'
@@ -31,7 +30,6 @@ export const Input = memo((props: IProps) => {
 		...otherProps
 	} = props
 	const ref = useRef<HTMLInputElement>(null)
-	const [isFocused, setIsFocused] = useState(false)
 
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange?.(e.target.value)
@@ -39,7 +37,6 @@ export const Input = memo((props: IProps) => {
 
 	useEffect(() => {
 		if (autoFocus) {
-			setIsFocused(true)
 			ref.current.focus()
 		}
 	}, [autoFocus])

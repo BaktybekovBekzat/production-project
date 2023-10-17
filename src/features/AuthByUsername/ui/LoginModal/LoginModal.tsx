@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal } from 'shared/ui/Modal/Modal'
-import { LoginForm } from '../LoginForm/LoginForm'
+import { LoginFormAsync } from '../LoginForm/LoginForm.async'
+import { Spinner } from 'shared/ui/Spinner/Spinner'
 
 interface IProps {
 	className?: string
@@ -19,7 +20,9 @@ export const LoginModal: FC<IProps> = (props) => {
 			className={classNames('', {}, [className])}
 			lazy
 		>
-			<LoginForm />
+			<Suspense fallback={<Spinner />}>
+				<LoginFormAsync />
+			</Suspense>
 		</Modal>
 	)
 }
