@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './PageError.module.scss'
 import { useTranslation } from 'react-i18next'
@@ -8,7 +8,7 @@ interface IProps {
 	className?: string
 }
 
-export const PageError: FC<IProps> = (props) => {
+export const PageError = memo((props: IProps) => {
 	const { className = '' } = props
 	const { t } = useTranslation()
 
@@ -22,4 +22,4 @@ export const PageError: FC<IProps> = (props) => {
 			<Button onClick={reloadPage}>{t('Обновить страницу')}</Button>
 		</div>
 	)
-}
+})

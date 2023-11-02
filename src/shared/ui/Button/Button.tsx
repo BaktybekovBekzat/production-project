@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode, memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './Button.module.scss'
 
@@ -25,7 +25,7 @@ export enum ButtonTheme {
 	BACKGROUND_INVERTED = 'backgroundInverted',
 }
 
-export const Button: FC<IProps> = (props) => {
+export const Button = memo((props: IProps) => {
 	const {
 		className = '',
 		children,
@@ -53,4 +53,4 @@ export const Button: FC<IProps> = (props) => {
 			{children}
 		</button>
 	)
-}
+})

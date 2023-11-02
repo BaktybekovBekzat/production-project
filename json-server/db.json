@@ -1,3 +1,19 @@
 {
-    
+	"users": [
+		{
+			"id": "1",
+			"username": "hhsqlp",
+			"password": "12345678"
+		}
+	],
+	"profile": {
+		"firstname": "Бекзат",
+		"lastname": "Бактыбеков",
+		"age": 18,
+		"currency": "USD",
+		"country": "Kyrgyzstan",
+		"city": "Bishkek",
+		"username": "hhsqlp",
+		"avatar": "https://thumbs.dreamstime.com/b/unknown-male-avatar-profile-image-businessman-vector-unknown-male-avatar-profile-image-businessman-vector-profile-179373829.jpg"
+	}
 }

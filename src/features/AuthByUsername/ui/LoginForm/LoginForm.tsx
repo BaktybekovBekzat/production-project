@@ -4,7 +4,7 @@ import styles from './LoginForm.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
@@ -12,14 +12,15 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { AppDispatch } from 'app/providers/StoreProvider/index'
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername'
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword'
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading'
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 
 interface IProps {
 	className?: string
+	onSuccess: () => void
 }
 
 const initialReducers: ReducersList = {
@@ -27,9 +28,9 @@ const initialReducers: ReducersList = {
 }
 
 const LoginForm = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className = '', onSuccess } = props
 	const { t } = useTranslation()
-	const dispatch = useDispatch<AppDispatch>()
+	const dispatch = useAppDispatch()
 	const username = useSelector(getLoginUsername)
 	const password = useSelector(getLoginPassword)
 	const isLoading = useSelector(getLoginIsLoading)
@@ -50,12 +51,17 @@ const LoginForm = memo((props: IProps) => {
 	)
 
 	const onFormSubmit = useCallback(
-		(e: FormEvent<HTMLFormElement>) => {
+		async (e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault()
 
-			dispatch(loginByUsername({ username, password }))
+			const result = await dispatch(
+				loginByUsername({ username, password })
+			)
+			if (result.meta.requestStatus === 'fulfilled') {
+				onSuccess()
+			}
 		},
-		[dispatch, password, username]
+		[dispatch, password, username, onSuccess]
 	)
 
 	return (

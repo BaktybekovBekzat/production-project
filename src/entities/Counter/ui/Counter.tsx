@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'shared/ui/Button/Button'
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
@@ -6,7 +6,7 @@ import { counterActions } from '../model/slice/counterSlice'
 
 interface IProps {}
 
-export const Counter: FC<IProps> = () => {
+export const Counter = memo<IProps>(() => {
 	const dispatch = useDispatch()
 	const counterValue = useSelector(getCounterValue)
 
@@ -29,4 +29,4 @@ export const Counter: FC<IProps> = () => {
 			</Button>
 		</div>
 	)
-}
+})

@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import { Suspense, memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal } from 'shared/ui/Modal/Modal'
 import { LoginFormAsync } from '../LoginForm/LoginForm.async'
@@ -10,7 +10,7 @@ interface IProps {
 	onClose: () => void
 }
 
-export const LoginModal: FC<IProps> = (props) => {
+export const LoginModal = memo((props: IProps) => {
 	const { className = '', isOpen, onClose } = props
 
 	return (
@@ -21,8 +21,8 @@ export const LoginModal: FC<IProps> = (props) => {
 			lazy
 		>
 			<Suspense fallback={<Spinner />}>
-				<LoginFormAsync />
+				<LoginFormAsync onSuccess={onClose} />
 			</Suspense>
 		</Modal>
 	)
-}
+})

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Theme, useTheme } from 'app/providers/ThemeProvider'
 import LightIcon from 'shared/assets/icons/theme-light.svg'
@@ -9,7 +9,7 @@ interface IProps {
 	className?: string
 }
 
-export const ThemeSwitcher: FC<IProps> = (props) => {
+export const ThemeSwitcher = memo((props: IProps) => {
 	const { className = '' } = props
 	const { theme, toggleTheme } = useTheme()
 
@@ -22,4 +22,4 @@ export const ThemeSwitcher: FC<IProps> = (props) => {
 			{theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}
 		</Button>
 	)
-}
+})

@@ -1,0 +1,17 @@
+.Link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+
+    svg {
+        fill: var(--inverted-primary-color);
+    }
+}
+
+.collapsed {
+    span {
+        opacity: 0;
+        width: 0;
+    }
+}

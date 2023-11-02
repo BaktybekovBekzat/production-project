@@ -13,30 +13,10 @@
     margin-top: 20px;
     margin-left: 30px;
     transition: all 0.25s;
-
-    &Item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-
-        svg {
-            fill: var(--inverted-primary-color);
-        }
-    }
 }
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
-
-    .links {
-        &Item {
-            span {
-                opacity: 0;
-                width: 0;
-            }
-        }
-    }
 }
 
 .switchers {

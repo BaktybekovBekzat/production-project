@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { memo } from 'react'
 import './Spinner.scss'
 
-export const Spinner: FC = () => {
+export const Spinner = memo(() => {
 	return (
 		<div className='lds-ring'>
 			<div></div>
@@ -10,4 +10,4 @@ export const Spinner: FC = () => {
 			<div></div>
 		</div>
 	)
-}
+})
