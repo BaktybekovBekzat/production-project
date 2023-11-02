@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const Sidebar = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 	const [collapsed, setCollapsed] = useState(false)
 
 	const onToggle = () => setCollapsed((prev) => !prev)

@@ -28,7 +28,7 @@ const initialReducers: ReducersList = {
 }
 
 const LoginForm = memo((props: IProps) => {
-	const { className = '', onSuccess } = props
+	const { className, onSuccess } = props
 	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
 	const username = useSelector(getLoginUsername)

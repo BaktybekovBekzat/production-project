@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export const NotFoundPage = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 	const { t } = useTranslation()
 
 	return (

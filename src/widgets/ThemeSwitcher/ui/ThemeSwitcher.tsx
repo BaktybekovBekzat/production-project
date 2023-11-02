@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const ThemeSwitcher = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 	const { theme, toggleTheme } = useTheme()
 
 	return (

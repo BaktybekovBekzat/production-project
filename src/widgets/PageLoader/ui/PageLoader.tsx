@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export const PageLoader = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 
 	return (
 		<div className={classNames(styles.PageLoader, {}, [className])}>

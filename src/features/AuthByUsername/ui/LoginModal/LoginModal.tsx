@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const LoginModal = memo((props: IProps) => {
-	const { className = '', isOpen, onClose } = props
+	const { className, isOpen, onClose } = props
 
 	return (
 		<Modal

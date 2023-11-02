@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export const Text = memo((props: IProps) => {
-	const { className = '', text, title, theme = TextTheme.PRIMARY } = props
+	const { className, text, title, theme = TextTheme.PRIMARY } = props
 
 	return (
 		<div

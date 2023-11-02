@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const LangSwitcher = memo((props: IProps) => {
-	const { className = '', short } = props
+	const { className, short } = props
 	const { t, i18n } = useTranslation()
 
 	const toggle = () => {

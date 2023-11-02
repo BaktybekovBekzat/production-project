@@ -6,8 +6,9 @@ import {
 	useRef,
 	useState,
 	MouseEvent,
+	MutableRefObject,
 } from 'react'
-import { classNames } from 'shared/lib/classNames/classNames'
+import { Mods, classNames } from 'shared/lib/classNames/classNames'
 import styles from './Modal.module.scss'
 import { Portal } from '../Portal/Portal'
 
@@ -22,12 +23,12 @@ interface IProps {
 const ANIMATION_DELAY = 100
 
 export const Modal: FC<IProps> = (props) => {
-	const { className = '', children, isOpen, onClose, lazy } = props
+	const { className, children, isOpen, onClose, lazy } = props
 	const [isMounted, setIsMounted] = useState(false)
 	const [isClosing, setIsClosing] = useState(false)
-	const timerRef = useRef<ReturnType<typeof setTimeout>>()
+	const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
 
-	const mods: Record<string, string | boolean> = {
+	const mods: Mods = {
 		[styles.opened]: isOpen,
 		[styles.isClosing]: isClosing,
 	}

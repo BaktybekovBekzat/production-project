@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const PageError = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 	const { t } = useTranslation()
 
 	const reloadPage = () => {

@@ -21,7 +21,7 @@ interface IProps extends HTMLInputProps {
 
 export const Input = memo((props: IProps) => {
 	const {
-		className = '',
+		className,
 		value,
 		onChange,
 		type,
@@ -37,7 +37,7 @@ export const Input = memo((props: IProps) => {
 
 	useEffect(() => {
 		if (autoFocus) {
-			ref.current.focus()
+			ref.current?.focus()
 		}
 	}, [autoFocus])
 

@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const Navbar = memo((props: IProps) => {
-	const { className = '' } = props
+	const { className } = props
 	const { t } = useTranslation()
 	const [isAuthModal, setIsAuthModal] = useState(false)
 	const dispatch = useDispatch()

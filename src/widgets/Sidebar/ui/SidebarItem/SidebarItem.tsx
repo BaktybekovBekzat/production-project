@@ -1,4 +1,4 @@
-import { FC, memo } from 'react'
+import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './SidebarItem.module.scss'
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
@@ -7,13 +7,13 @@ import { useTranslation } from 'react-i18next'
 
 interface IProps {
 	className?: string
-	item?: ISidebarItem
+	item: ISidebarItem
 	collapsed?: boolean
 }
 
 export const SidebarItem = memo((props: IProps) => {
 	const { t } = useTranslation()
-	const { className = '', item, collapsed } = props
+	const { className, item, collapsed } = props
 
 	return (
 		<AppLink
